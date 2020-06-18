@@ -9,7 +9,6 @@
   "author": "Davi",
   "license": "MIT",
   "dependencies": {
-    "@discordjs/opus": "^0.3.2",
     "all": "0.0.0",
     "chalk": "^4.0.0",
     "danbooru": "^3.1.0",
