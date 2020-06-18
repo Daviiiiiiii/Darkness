@@ -1,6 +1,9 @@
 {
   "name": "Darkness",
   "version": "1.5.0",
+  "engines": {
+    "node": "14.3.0"
+  },
   "description": "a bot",
   "main": "index.js",
   "scripts": {
