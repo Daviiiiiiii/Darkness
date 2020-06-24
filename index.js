@@ -112,7 +112,8 @@ d8P  ?88  d8P  ?88    88P      888bd8P    88P  ?8bd8b_,dP ?8b,    ?8b,
     'Bot:' + name + '\n' +
     'Autor:' + author + '\n' +
     'Versão:' + version + '\n' +
-    'Servers:' + client.guilds.cache.array().length); //Cmd Output
+    'Servers:' + client.guilds.cache.array() + '\n' +
+    'ServersNum:' + client.guilds.cache.array().length); //Cmd Output
   console.log('===================================');
   console.log(chalk.blueBright('Output Log:'));
   /////
