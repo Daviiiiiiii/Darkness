@@ -63,6 +63,7 @@ function hook(channel, title, message, color, avatar) {
     })
 
 }
+
 function throwError(reason, origin) {
   let error = new Error;
   error.message = `Comando não executado! Motivo:${reason} Origem:${origin}`
@@ -119,20 +120,12 @@ d8P  ?88  d8P  ?88    88P      888bd8P    88P  ?8bd8b_,dP ?8b,    ?8b,
   /////
 
   /////Auto-Status
-  setTimeout(function() {
-    let server = 'servers'
-    let status = [`>help`, `Hello World!`, `Online em ${client.guilds.cache.array().length} ${server} :)`, `Darkness ainda é um WIP :)`]
-    setInterval(function() {
-      let currentstatus = status[Math.floor(Math.random() * status.length)];
-      client.user.setPresence({
-        game: {
-          name: currentstatus
-        },
-        status: 'online'
-      })
-    }, 20000)
-    client.user.setActivity(`Online em ${client.guilds.cache.array().length} ${server} :)`);
-  }, 5000)
+  let server = 'servers'
+  let status = [`>help`, `Hello World!`, `Online em ${client.guilds.cache.array().length} ${server} :)`, `Darkness ainda é um WIP :)`, `Online em ${client.guilds.cache.array().length} ${server} :)`]
+  setInterval(function() {
+    let currentstatus = status[Math.floor(Math.random() * status.length)];
+    client.user.setActivity(currentstatus);
+  }, 20000)
   /////
 })
 /////
@@ -166,7 +159,11 @@ client.on('message', message => {
   if (message.mentions.has(message.guild.me)) {
     if (message.content.toLowerCase().includes('everyone') || message.content.toLowerCase().includes('here')) return;
     message.channel.send(`Meu prefixo é: "${prefix}"`)
-      .then(msg => {msg.delete(options = {timeout: 5000})})
+      .then(msg => {
+        msg.delete(options = {
+          timeout: 5000
+        })
+      })
     return;
   }
   if (message.content.startsWith(prefix + ' ')) return;
