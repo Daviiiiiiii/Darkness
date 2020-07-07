@@ -10,20 +10,32 @@ exports.run = (client, message, args, functions, ownerid, adminsid, permissão, 
 
   if (clientchannel == undefined) {
     let m = message.channel.send('Eu não estou conectada a nenhum canal de voz!')
-    .then(msg => {msg.delete(options = {timeout: 5000})})
+      .then(msg => {
+        msg.delete(options = {
+          timeout: 5000
+        })
+      })
     throw throwError('Client not in channel', 'stop');
     return;
   }
   if (userchannel != clientchannel) {
     let m = message.channel.send('Você precisa estar presente no canal de voz para usar este commando!')
-    .then(msg => {msg.delete(options = {timeout: 5000})})
+      .then(msg => {
+        msg.delete(options = {
+          timeout: 5000
+        })
+      })
     throw throwError('User not in channel', 'stop');
     return;
   }
   if (membernum < 2) {
     if (message.member.roles.cache.find(role => role.name.toLowerCase() == 'dj')) {} else {
       let m = message.channel.send('Você precisa ter permissão de DJ ou estar sozinho no canal de voz para parar musicas')
-      .then(msg => {msg.delete(options = {timeout: 5000})})
+        .then(msg => {
+          msg.delete(options = {
+            timeout: 5000
+          })
+        })
       throw throwError('Missing permission', 'stop');
       return;
     }
