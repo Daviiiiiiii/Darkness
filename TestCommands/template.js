@@ -4,8 +4,8 @@ exports.run = (client, message, args, functions, ownerid, adminsid, permissão, 
 }
 
 module.exports.config = {
-    name: 'template',
-    description: 'uma template de commando',
-    adminOnly: 'Não',
-    ownerOnly: 'Sim'
+  name: 'template',
+  description: 'uma template de commando',
+  adminOnly: 'Não',
+  ownerOnly: 'Sim'
 }
