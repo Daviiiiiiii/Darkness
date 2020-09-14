@@ -10,6 +10,7 @@ const ytsr = require('ytsr');
 const chalk = require('chalk');
 /////
 
+
 /////Functions
 function hook(channel, title, message, color, avatar) {
 
@@ -20,6 +21,7 @@ function hook(channel, title, message, color, avatar) {
   if (!avatar) avatar = 'https://cdn4.iconfinder.com/data/icons/technology-devices-1/500/speech-bubble-128.png'
   color = color.replace(/\s/g, '');
   avatar = avatar.replace(/\s/g, '');
+
 
   channel.fetchWebhooks()
     .then(webhook => {
@@ -61,7 +63,6 @@ function hook(channel, title, message, color, avatar) {
     })
 
 }
-
 function throwError(reason, origin) {
   let error = new Error;
   error.message = `Comando não executado! Motivo:${reason} Origem:${origin}`
@@ -86,7 +87,7 @@ var playing = false;
 /////
 
 /////Configs
-const prefix = ">";
+const prefix = "<";
 var permissão = 'Você não possui permissão para executar este commando!'
 /////
 
@@ -111,19 +112,26 @@ d8P  ?88  d8P  ?88    88P      888bd8P    88P  ?8bd8b_,dP ?8b,    ?8b,
     'Bot:' + name + '\n' +
     'Autor:' + author + '\n' +
     'Versão:' + version + '\n' +
-    'Servers:' + client.guilds.cache.array() + '\n' +
-    'ServersNum:' + client.guilds.cache.array().length); //Cmd Output
+    'Servers:' + client.guilds.cache.array().length); //Cmd Output
   console.log('===================================');
   console.log(chalk.blueBright('Output Log:'));
   /////
 
   /////Auto-Status
-  let server = 'servers'
-  let status = [`>help`, `Hello World!`, `Online em ${client.guilds.cache.array().length} ${server} :)`, `Darkness ainda é um WIP :)`, `Online em ${client.guilds.cache.array().length} ${server} :)`]
-  setInterval(function() {
-    let currentstatus = status[Math.floor(Math.random() * status.length)];
-    client.user.setActivity(currentstatus);
-  }, 20000)
+  setTimeout(function() {
+    let server = 'servers'
+    let status = [`>help`, `Hello World!`, `Online em ${client.guilds.cache.array().length} ${server} :)`, `Darkness ainda é um WIP :)`]
+    setInterval(function() {
+      let currentstatus = status[Math.floor(Math.random() * status.length)];
+      client.user.setPresence({
+        game: {
+          name: currentstatus
+        },
+        status: 'online'
+      })
+    }, 20000)
+    client.user.setActivity(`Online em ${client.guilds.cache.array().length} ${server} :)`);
+  }, 5000)
   /////
 })
 /////
@@ -157,11 +165,7 @@ client.on('message', message => {
   if (message.mentions.has(message.guild.me)) {
     if (message.content.toLowerCase().includes('everyone') || message.content.toLowerCase().includes('here')) return;
     message.channel.send(`Meu prefixo é: "${prefix}"`)
-      .then(msg => {
-        msg.delete(options = {
-          timeout: 5000
-        })
-      })
+      .then(msg => {msg.delete(options = {timeout: 5000})})
     return;
   }
   if (message.content.startsWith(prefix + ' ')) return;
