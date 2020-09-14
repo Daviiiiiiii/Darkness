@@ -10,7 +10,6 @@ const ytsr = require('ytsr');
 const chalk = require('chalk');
 /////
 
-
 /////Functions
 function hook(channel, title, message, color, avatar) {
 
@@ -21,7 +20,6 @@ function hook(channel, title, message, color, avatar) {
   if (!avatar) avatar = 'https://cdn4.iconfinder.com/data/icons/technology-devices-1/500/speech-bubble-128.png'
   color = color.replace(/\s/g, '');
   avatar = avatar.replace(/\s/g, '');
-
 
   channel.fetchWebhooks()
     .then(webhook => {
