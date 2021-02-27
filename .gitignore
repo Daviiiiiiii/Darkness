@@ -4,4 +4,4 @@ Configs/PermissionsConfig.json
 node_modules
 npm-debug.log
 Commands/say.js
-TestCommands
+TestingCommands
