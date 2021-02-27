@@ -26,7 +26,7 @@ exports.run = async (client, message, args, functions, ownerid, adminsid, permis
     throw throwError('No voice channel', 'play');
     return;
   }
-  if (!args[0]){
+  if (!args[0]) {
     message.channel.send('Especifique um link ou musica para tocar!');
     throw throwError('No song specified', 'play');
     return;
@@ -34,12 +34,16 @@ exports.run = async (client, message, args, functions, ownerid, adminsid, permis
 
   if (args[0].startsWith('https://www.youtube.com/watch')) {
     songInfo = await ytdl.getInfo(args[0]);
-    let thumb = await songInfo.playerResponse.videoDetails.thumbnail.thumbnails;
+    let thumb = await songInfo.player_response.videoDetails.thumbnail.thumbnails;
 
-    let likes = await songInfo.likes;
-    if (likes == null) {likes = '0'};
-    let dislikes = await songInfo.dislikes;
-    if (dislikes == null) {dislikes = '0'};
+    let likes = await songInfo.videoDetails.likes;
+    if (likes == null) {
+      likes = '0'
+    };
+    let dislikes = await songInfo.videoDetails.dislikes;
+    if (dislikes == null) {
+      dislikes = '0'
+    };
 
 
     let lengthSec = await songInfo.length_seconds;
@@ -53,11 +57,11 @@ exports.run = async (client, message, args, functions, ownerid, adminsid, permis
 
     let lengthForm = `${minutes}:${seconds}`
     song = {
-      title: songInfo.title,
-      url: songInfo.video_url,
+      title: songInfo.videoDetails.title,
+      url: songInfo.videoDetails.video_url,
       thumb: thumb[3].url,
-      views: songInfo.playerResponse.videoDetails.viewCount,
-      author: songInfo.playerResponse.videoDetails.author,
+      views: songInfo.player_response.videoDetails.viewCount,
+      author: songInfo.player_response.videoDetails.author,
       likes: likes,
       dislikes: dislikes,
       requester: requester,
@@ -67,17 +71,22 @@ exports.run = async (client, message, args, functions, ownerid, adminsid, permis
     const songSearch = await ytsr(eArgs, options = {
       limit: 2
     });
-    if (songSearch.items[0].link.toString().includes('https://www.youtube.com/user')) {
-      songInfo = await ytdl.getInfo(songSearch.items[1].link);
+    if (songSearch.items[0].url.toString().includes('https://www.youtube.com/user')) {
+      songInfo = await ytdl.getInfo(songSearch.items[1].url);
     } else {
-      songInfo = await ytdl.getInfo(songSearch.items[0].link);
+      songInfo = await ytdl.getInfo(songSearch.items[0].url);
     }
-    let thumb = await songInfo.playerResponse.videoDetails.thumbnail.thumbnails;
 
-    let likes = await songInfo.likes;
-    if (likes == null) {likes = '0'};
-    let dislikes = await songInfo.dislikes;
-    if (dislikes == null) {dislikes = '0'};
+    let thumb = await songInfo.player_response.videoDetails.thumbnail.thumbnails;
+
+    let likes = await songInfo.videoDetails.likes;
+    if (likes == null) {
+      likes = '0'
+    };
+    let dislikes = await songInfo.videoDetails.dislikes;
+    if (dislikes == null) {
+      dislikes = '0'
+    };
 
 
     let lengthSec = await songInfo.length_seconds;
@@ -92,11 +101,11 @@ exports.run = async (client, message, args, functions, ownerid, adminsid, permis
     let lengthForm = `${minutes}:${seconds}`
 
     song = {
-      title: songInfo.title,
-      url: songInfo.video_url,
+      title: songInfo.videoDetails.title,
+      url: songInfo.videoDetails.video_url,
       thumb: thumb[3].url,
-      views: songInfo.playerResponse.videoDetails.viewCount,
-      author: songInfo.playerResponse.videoDetails.author,
+      views: songInfo.player_response.videoDetails.viewCount,
+      author: songInfo.player_response.videoDetails.author,
       likes: likes,
       dislikes: dislikes,
       requester: requester,

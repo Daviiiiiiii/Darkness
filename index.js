@@ -87,7 +87,7 @@ var playing = false;
 /////
 
 /////Configs
-const prefix = "<";
+const prefix = ">";
 var permissão = 'Você não possui permissão para executar este commando!'
 /////
 
