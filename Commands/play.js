@@ -71,7 +71,7 @@ exports.run = async (client, message, args, functions, ownerid, adminsid, permis
     const songSearch = await ytsr(eArgs, options = {
       limit: 2
     });
-    if (songSearch.items[0].url.toString().includes('https://www.youtube.com/user')) {
+    if (songSearch.items[0].url.toString().startsWith('https://www.youtube.com/user')) {
       songInfo = await ytdl.getInfo(songSearch.items[1].url);
     } else {
       songInfo = await ytdl.getInfo(songSearch.items[0].url);
