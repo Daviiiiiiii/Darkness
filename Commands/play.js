@@ -46,7 +46,7 @@ exports.run = async (client, message, args, functions, ownerid, adminsid, permis
     };
 
 
-    let lengthSec = await songInfo.length_seconds;
+    let lengthSec = await songInfo.videoDetails.length_seconds;
     lengthSec = parseInt(lengthSec);
 
     let minutes = Math.floor(lengthSec / 60);

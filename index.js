@@ -82,10 +82,6 @@ const queue = new Map();
 const homeServer = 474749720238227458;
 /////
 
-/////Variables
-var playing = false;
-/////
-
 /////Configs
 const prefix = ">";
 var permissão = 'Você não possui permissão para executar este commando!'
