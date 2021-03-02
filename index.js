@@ -158,7 +158,7 @@ fs.readdir('./Commands/', (err, files) => {
 /////Message Event
 client.on('message', message => {
   if (message.author.bot) return;
-  if (message.mentions.has(message.guild.me)) {
+  if (message.mentions.users.find(u => u.id == message.guild.me.id)) {
     if (message.content.toLowerCase().includes('everyone') || message.content.toLowerCase().includes('here')) return;
     message.channel.send(`Meu prefixo é: "${prefix}"`)
       .then(msg => {msg.delete(options = {timeout: 5000})})
