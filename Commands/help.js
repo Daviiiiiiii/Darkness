@@ -1,5 +1,6 @@
 exports.run = (client, message, args, functions, ownerid, adminsid, permissão, author, Discord, hook, booru, prefix, giphy, ytdl, ytsr, queue, serverQueue, throwError) => {
   if (args[0]) {
+    if (args[0] == 'test') return;
     let command = args[0];
     if (client.commands.has(command)) {
       command = client.commands.get(command);
@@ -21,7 +22,7 @@ exports.run = (client, message, args, functions, ownerid, adminsid, permissão, 
       .setThumbnail(message.guild.iconURL())
       .setTimestamp()
       .setDescription(`Estes são os commandos disponiveis! \n O prefixo é: ${prefix} \n \n Para obter informações sobre um comando use ">help (comando)"`)
-      .addField('Commandos:', '``danbooru`` ``egles`` ``help`` ``info`` ``ping`` ``quente`` ``roles`` ``roll`` ``play`` ``skip`` ``stop``')
+      .addField('Commandos:', '``danbooru`` ``egles`` ``help`` ``info`` ``ping`` ``quente`` ``roles`` ``roll`` ``play`` ``playing`` ``queue`` ``skip`` ``stop`` ``b64``')
       .setFooter('Darkness Bot', client.user.displayAvatarURL())
     message.channel.send(embed).then(msg => {
       msg.delete(options = {
