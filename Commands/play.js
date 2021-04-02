@@ -147,7 +147,7 @@ exports.run = async (client, message, args, functions, ownerid, adminsid, permis
       .setURL(song.url)
       .addField('**Views**', `${song.views}`, true)
       .addField('**Autor**', `${song.author}`, true)
-      .addField('**Avaliação**', `👍 ${song.likes}   👎${song.dislikes}`, true)
+      .addField('**Avaliação**', `👍 ${song.likes}   👎 ${song.dislikes}`, true)
       .setTimestamp(message.createdTimestamp)
     return message.channel.send(embed);
   }

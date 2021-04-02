@@ -63,6 +63,7 @@ function hook(channel, title, message, color, avatar) {
     })
 
 }
+
 function throwError(reason, origin) {
   let error = new Error;
   error.message = `Comando não executado! Motivo:${reason} Origem:${origin}`
@@ -161,7 +162,11 @@ client.on('message', message => {
   if (message.mentions.users.find(u => u.id == message.guild.me.id)) {
     if (message.content.toLowerCase().includes('everyone') || message.content.toLowerCase().includes('here')) return;
     message.channel.send(`Meu prefixo é: "${prefix}"`)
-      .then(msg => {msg.delete(options = {timeout: 5000})})
+      .then(msg => {
+        msg.delete(options = {
+          timeout: 5000
+        })
+      })
     return;
   }
   if (message.content.startsWith(prefix + ' ')) return;
