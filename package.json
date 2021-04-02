@@ -22,7 +22,7 @@
     "fs": "0.0.1-security",
     "giphy-api": "^2.0.1",
     "lzma-native": "^6.0.1",
-    "m3u8stream": "^0.7.1",
+    "m3u8stream": "^0.8.3",
     "node-pre-gyp": "^0.15.0",
     "nodemon": "^2.0.7",
     "opusscript": "0.0.7",
