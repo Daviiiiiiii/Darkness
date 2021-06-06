@@ -142,9 +142,12 @@ client.on('guildCreate', guild => {
 /////Help command
 client.commands = new Discord.Collection();
 
-fs.readdir('./Commands/', (err, files) => {
-  if (err) console.log(err)
+let rawcmIndex = fs.readFileSync('./commandIndex.json')
+let cmIndex = JSON.parse(rawcmIndex);
+let cmJsonLen = Object.keys(cmIndex.commands).length
+let cmdArray = []
 
+function setCollection(files) {
   let jsfile = files.filter(f => f.split('.').pop() === 'js')
   if (jsfile.length <= 0) {
     return console.log('Commands not found');
@@ -153,7 +156,15 @@ fs.readdir('./Commands/', (err, files) => {
     let pull = require(`./Commands/${f}`);
     client.commands.set(pull.config.name, pull);
   })
-})
+}
+
+for (i = 0; i < cmJsonLen; i++) {
+  let cmn = cmIndex.commands[i].file
+  cmdArray.push(cmn)
+  if (i == cmJsonLen - 1) {
+    setCollection(cmdArray)
+  }
+}
 /////
 
 /////Message Event
@@ -184,24 +195,27 @@ client.on('message', message => {
   console.log(chalk.bgYellow('Processing Message...'));
   console.log(chalk.yellow(`Message:${message.content}, Guild:${message.guild.name}, Message Channel:${message.channel.name}, Author:${message.author.username}#${message.author.discriminator}, AuthorID:${message.author.id}`));
 
-  try {
-    let commandFile = require(`./commands/${cmd}.js`);
-    commandFile.run(client, message, args, functions, ownerid, adminsid, permissão, author, Discord, hook, booru, prefix, giphy, ytdl, ytsr, queue, serverQueue, throwError);
-  } catch (e) {
-    console.log(chalk.red(e.message));
+  let fncm = client.commands.find(name => cmd)
+  if (fncm) {
+    try {
+      let commandFile = require(`./commands/${cmd}.js`)
+      commandFile.run(client, message, args, functions, ownerid, adminsid, permissão, author, Discord, hook, booru, prefix, giphy, ytdl, ytsr, queue, serverQueue, throwError);
+    } catch (e) {
+      if (e.message.startsWith('Comando não executado!')) return;
+      if (e.message.includes('Cannot find module')) return console.log(chalk.red('Command does not exists.'));
 
-    if (e.message.startsWith('Comando não executado!')) return;
-    if (e.message.toString().includes('Cannot find module')) return console.log(chalk.red('Command does not exists.'));
+      console.log(chalk.red(e.message));
 
-    let eGuild = client.guilds.cache.find(hGuild => hGuild.id == homeServer)
-    let eChannel = eGuild.channels.cache.find(channel => channel.id == 513418269336666122)
+      let eGuild = client.guilds.cache.find(hGuild => hGuild.id == homeServer)
+      let eChannel = eGuild.channels.cache.find(channel => channel.id == 513418269336666122)
 
-    let embed = new Discord.MessageEmbed()
-      .setAuthor('Erro', 'https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-512.png')
-      .setColor('RED')
-      .setDescription(`Mensagem: ${message.content} \n Autor: ${message.author} \n Server: ${message.guild.name} \n Erro: \n ${e.name + ': ' + e.message}`)
-      .setTimestamp(message.createdTimestamp)
-    eChannel.send(embed)
+      let embed = new Discord.MessageEmbed()
+        .setAuthor('Erro', 'https://cdn0.iconfinder.com/data/icons/shift-free/32/Error-512.png')
+        .setColor('RED')
+        .setDescription(`Mensagem: ${message.content} \n Autor: ${message.author} \n Server: ${message.guild.name} \n Erro: \n ${e.name + ': ' + e.message}`)
+        .setTimestamp(message.createdTimestamp)
+      eChannel.send(embed)
+    }
   }
 })
 /////

@@ -1,0 +1,84 @@
+{
+  "commands": [
+    {
+      "file": "b64.js",
+      "call": "base64",
+      "pLevel": "0"
+    },
+    {
+      "file": "danbooru.js",
+      "call": "danbooru",
+      "pLevel": "0"
+    },
+    {
+      "file": "egles.js",
+      "call": "egles",
+      "pLevel": "0"
+    },
+    {
+      "file": "help.js",
+      "call": "help",
+      "pLevel": "0"
+    },
+    {
+      "file": "info.js",
+      "call": "info",
+      "pLevel": "0"
+    },
+    {
+      "file": "ping.js",
+      "call": "ping",
+      "pLevel": "0"
+    },
+    {
+      "file": "play.js",
+      "call": "play",
+      "pLevel": "0"
+    },
+    {
+      "file": "playing.js",
+      "call": "playing",
+      "pLevel": "0"
+    },
+    {
+      "file": "quente.js",
+      "call": "quente",
+      "pLevel": "0"
+    },
+    {
+      "file": "queue.js",
+      "call": "queue",
+      "pLevel": "0"
+    },
+    {
+      "file": "roles.js",
+      "call": "roles",
+      "pLevel": "1"
+    },
+    {
+      "file": "roll.js",
+      "call": "roll",
+      "pLevel": "0"
+    },
+    {
+      "file": "say.js",
+      "call": "template",
+      "pLevel": "2"
+    },
+    {
+      "file": "skip.js",
+      "call": "skip",
+      "pLevel": "0"
+    },
+    {
+      "file": "stop.js",
+      "call": "stop",
+      "pLevel": "0"
+    },
+    {
+      "file": "Test.js",
+      "call": "test",
+      "pLevel": "2"
+    }
+  ]
+}
