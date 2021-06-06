@@ -51,11 +51,6 @@
       "pLevel": "0"
     },
     {
-      "file": "roles.js",
-      "call": "roles",
-      "pLevel": "1"
-    },
-    {
       "file": "roll.js",
       "call": "roll",
       "pLevel": "0"
