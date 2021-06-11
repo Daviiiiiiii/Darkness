@@ -23,7 +23,7 @@
     "giphy-api": "^2.0.1",
     "lzma-native": "^8.0.1",
     "m3u8stream": "^0.8.4",
-    "node-pre-gyp": "^0.15.0",
+    "node-pre-gyp": "^0.17.0",
     "nodemon": "^2.0.7",
     "opusscript": "0.0.8",
     "parse-time": "^0.1.4",
